@@ -63,10 +63,10 @@ jobs:
   shared-ci:
     uses: waismeeran/shared-ci/.github/workflows/node-ci.yml@6b9f5af479a4b4fa012cd2271e0b2db6d1795341
     with:
-      node-version: ${{ github.event.inputs.node-version }}
-      working-directory: ${{ github.event.inputs.working-directory }}
+      node-version: ${{ github.event.inputs['node-version'] }}
+      working-directory: ${{ github.event.inputs['working-directory'] }}
       unit: ${{ github.event.inputs.unit || 'auto' }}
       e2e: ${{ github.event.inputs.e2e || 'false' }}
-      lint-command: ${{ github.event.inputs.lint-command }}
-      unit-command: ${{ github.event.inputs.unit-command }}
-      build-command: ${{ github.event.inputs.build-command }}
+      lint-command: ${{ github.event.inputs['lint-command'] }}
+      unit-command: ${{ github.event.inputs['unit-command'] }}
+      build-command: ${{ github.event.inputs['build-command'] }}
