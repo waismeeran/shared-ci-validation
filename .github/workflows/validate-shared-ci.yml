@@ -1,7 +1,7 @@
-# Copy into a separate consumer repository. Replace waismeeran and 3635b071efb931bd83a0fc374a468ea86c2ffdb1 only
+# Copy into a separate consumer repository. Replace OWNER and REVISION only
 # after the Shared CI repository and candidate revision are published.
 name: Shared CI hosted validation
-run-name: "Shared CI hosted validation: ${{ inputs.case }} (${{ inputs.working_directory }})"
+run-name: 'Shared CI hosted validation: ${{ inputs.case }} (${{ inputs.working_directory }})'
 
 on:
   workflow_dispatch:
@@ -24,7 +24,7 @@ on:
           - npm-cache-invalidation-before
           - npm-cache-invalidation-after
       working_directory:
-        description: Exact fixture directory from the selected case in fixtures/cases.json
+        description: Exact fixture directory from the selected case in cases.json
         required: true
         type: string
         default: fixtures/npm-full
@@ -61,7 +61,7 @@ permissions:
 
 jobs:
   shared-ci:
-    uses: waismeeran/shared-ci/.github/workflows/node-ci.yml@3635b071efb931bd83a0fc374a468ea86c2ffdb1
+    uses: waismeeran/shared-ci/.github/workflows/node-ci.yml@a883996029e2cf16f075c5303f51af54520ba08e
     with:
       node-version: ${{ inputs.node_version }}
       working-directory: ${{ inputs.working_directory }}
