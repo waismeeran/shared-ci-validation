@@ -1,4 +1,4 @@
-# Copy into a separate consumer repository. Replace waismeeran and 6b9f5af479a4b4fa012cd2271e0b2db6d1795341 only
+# Copy into a separate consumer repository. Replace waismeeran and 3635b071efb931bd83a0fc374a468ea86c2ffdb1 only
 # after the Shared CI repository and candidate revision are published.
 name: Shared CI hosted validation
 run-name: "Shared CI hosted validation: ${{ inputs.case }} (${{ inputs.working_directory }})"
@@ -61,7 +61,7 @@ permissions:
 
 jobs:
   shared-ci:
-    uses: waismeeran/shared-ci/.github/workflows/node-ci.yml@6b9f5af479a4b4fa012cd2271e0b2db6d1795341
+    uses: waismeeran/shared-ci/.github/workflows/node-ci.yml@3635b071efb931bd83a0fc374a468ea86c2ffdb1
     with:
       node-version: ${{ inputs.node_version }}
       working-directory: ${{ inputs.working_directory }}
