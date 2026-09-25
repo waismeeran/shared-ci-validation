@@ -23,12 +23,12 @@ on:
           - capability-failure
           - npm-cache-invalidation-before
           - npm-cache-invalidation-after
-      working-directory:
+      working_directory:
         description: Exact fixture directory from the selected case in fixtures/cases.json
         required: true
         type: string
         default: fixtures/npm-full
-      node-version:
+      node_version:
         description: Node selector from the selected case (auto, 22, 24, or 26)
         required: false
         type: string
@@ -43,15 +43,15 @@ on:
         required: false
         type: string
         default: 'false'
-      lint-command:
+      lint_command:
         description: Custom command for custom-overrides
         required: false
         type: string
-      unit-command:
+      unit_command:
         description: Custom command for custom-overrides
         required: false
         type: string
-      build-command:
+      build_command:
         description: Custom command for custom-overrides
         required: false
         type: string
@@ -63,10 +63,10 @@ jobs:
   shared-ci:
     uses: waismeeran/shared-ci/.github/workflows/node-ci.yml@6b9f5af479a4b4fa012cd2271e0b2db6d1795341
     with:
-      node-version: ${{ github.event.inputs['node-version'] }}
-      working-directory: ${{ github.event.inputs['working-directory'] }}
+      node_version: ${{ github.event.inputs.node_version }}
+      working_directory: ${{ github.event.inputs.working_directory }}
       unit: ${{ github.event.inputs.unit || 'auto' }}
       e2e: ${{ github.event.inputs.e2e || 'false' }}
-      lint-command: ${{ github.event.inputs['lint-command'] }}
-      unit-command: ${{ github.event.inputs['unit-command'] }}
-      build-command: ${{ github.event.inputs['build-command'] }}
+      lint_command: ${{ github.event.inputs.lint_command }}
+      unit_command: ${{ github.event.inputs.unit_command }}
+      build_command: ${{ github.event.inputs.build_command }}
