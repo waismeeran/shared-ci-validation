@@ -1,7 +1,7 @@
 # Copy into a separate consumer repository. Replace waismeeran and 6b9f5af479a4b4fa012cd2271e0b2db6d1795341 only
 # after the Shared CI repository and candidate revision are published.
 name: Shared CI hosted validation
-run-name: Shared CI hosted validation: ${{ github.event.inputs.case }}
+run-name: "Shared CI hosted validation: ${{ github.event.inputs.case }}"
 
 on:
   workflow_dispatch:
