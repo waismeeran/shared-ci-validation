@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       case:
-        description: Case from fixtures/hosted-validation/cases.json
+        description: Case ID from fixtures/cases.json
         required: true
         type: choice
         options:
@@ -23,6 +23,38 @@ on:
           - capability-failure
           - npm-cache-invalidation-before
           - npm-cache-invalidation-after
+      working-directory:
+        description: Exact fixture directory from the selected case in fixtures/cases.json
+        required: true
+        type: string
+        default: fixtures/npm-full
+      node-version:
+        description: Node selector from the selected case (auto, 22, 24, or 26)
+        required: false
+        type: string
+        default: '24'
+      unit:
+        description: Unit capability mode; use true for invalid-config
+        required: false
+        type: string
+        default: auto
+      e2e:
+        description: Set true for e2e-enabled
+        required: false
+        type: string
+        default: 'false'
+      lint-command:
+        description: Custom command for custom-overrides
+        required: false
+        type: string
+      unit-command:
+        description: Custom command for custom-overrides
+        required: false
+        type: string
+      build-command:
+        description: Custom command for custom-overrides
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -31,10 +63,10 @@ jobs:
   shared-ci:
     uses: waismeeran/shared-ci/.github/workflows/node-ci.yml@6b9f5af479a4b4fa012cd2271e0b2db6d1795341
     with:
-      node-version: ${{ github.event.inputs.case == 'npm-node22' && '22' || github.event.inputs.case == 'npm-node26' && '26' || github.event.inputs.case == 'npm-conventional' && '24' || 'auto' }}
-      working-directory: ${{ github.event.inputs.case == 'npm-conventional' && 'fixtures/npm-full' || github.event.inputs.case == 'npm-node22' && 'fixtures/npm-full' || github.event.inputs.case == 'npm-node26' && 'fixtures/npm-full' || github.event.inputs.case == 'pnpm-conventional' && 'fixtures/pnpm' || github.event.inputs.case == 'yarn4-conventional' && 'fixtures/yarn' || github.event.inputs.case == 'custom-overrides' && 'fixtures/custom-commands' || github.event.inputs.case == 'nested-working-directory' && 'fixtures/nested-working-directory/app' || github.event.inputs.case == 'e2e-enabled' && 'fixtures/e2e-consumer' || github.event.inputs.case == 'invalid-config' && 'fixtures/missing-capabilities' || github.event.inputs.case == 'npm-cache-invalidation-before' && 'fixtures/cache-invalidation/before' || github.event.inputs.case == 'npm-cache-invalidation-after' && 'fixtures/cache-invalidation/after' || 'fixtures/capability-failure' }}
-      unit: ${{ github.event.inputs.case == 'invalid-config' && 'true' || 'auto' }}
-      e2e: ${{ github.event.inputs.case == 'e2e-enabled' && 'true' || 'false' }}
-      lint-command: ${{ github.event.inputs.case == 'custom-overrides' && 'npm run check:lint' || '' }}
-      unit-command: ${{ github.event.inputs.case == 'custom-overrides' && 'npm run tests' || '' }}
-      build-command: ${{ github.event.inputs.case == 'custom-overrides' && 'npm run compile:production' || '' }}
+      node-version: ${{ github.event.inputs.node-version }}
+      working-directory: ${{ github.event.inputs.working-directory }}
+      unit: ${{ github.event.inputs.unit || 'auto' }}
+      e2e: ${{ github.event.inputs.e2e || 'false' }}
+      lint-command: ${{ github.event.inputs.lint-command }}
+      unit-command: ${{ github.event.inputs.unit-command }}
+      build-command: ${{ github.event.inputs.build-command }}
