@@ -1,0 +1,20 @@
+name: Shared CI sanitized release references
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  v1_0_0:
+    name: v1.0.0
+    uses: waismeeran/shared-ci/.github/workflows/node-ci.yml@v1.0.0
+
+  v1:
+    name: v1
+    uses: waismeeran/shared-ci/.github/workflows/node-ci.yml@v1
+
+  full_sha:
+    name: sanitized full SHA
+    uses: waismeeran/shared-ci/.github/workflows/node-ci.yml@5f0e354b4ed21ae43257c83fa4456e500d5e2c65
