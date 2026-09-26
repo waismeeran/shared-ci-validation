@@ -1,0 +1,12 @@
+{
+  "name": "shared-ci-v1-smoke-consumer",
+  "version": "1.0.0",
+  "private": true,
+  "engines": { "node": "24" },
+  "scripts": {
+    "lint": "node --check index.mjs",
+    "typecheck": "node --check index.mjs",
+    "test": "node --test",
+    "build": "node --check build.mjs"
+  }
+}

@@ -1,0 +1,11 @@
+name: Shared CI V1 fresh consumer smoke
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    uses: waismeeran/shared-ci/.github/workflows/node-ci.yml@v1
