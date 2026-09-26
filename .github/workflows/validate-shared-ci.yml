@@ -61,7 +61,7 @@ permissions:
 
 jobs:
   shared-ci:
-    uses: waismeeran/shared-ci/.github/workflows/node-ci.yml@cafba3a58415f84390c92085b85b61908b00c6cf
+    uses: waismeeran/shared-ci/.github/workflows/node-ci.yml@v1.0.0
     with:
       node-version: ${{ inputs.node_version }}
       working-directory: ${{ inputs.working_directory }}
